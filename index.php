@@ -1,3 +1,6 @@
+<?php 
+$phone_number = "9043216585";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,7 +62,7 @@
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex flex-column justify-content-center">
     <div class="container" data-aos="zoom-in" data-aos-delay="100">
-      <h1>Rajesh Prasad</h1>
+      <h1>Rajesh Prasad <?php echo($phone_number); ?></h1>
       <p>I'm <span class="typed" data-typed-items="Web Developer, Java Developer, Freelancer, Traveller"></span></p>
       <div class="social-links">
         <!-- <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a> -->
