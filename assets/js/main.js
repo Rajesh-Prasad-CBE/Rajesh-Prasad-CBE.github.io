@@ -18,6 +18,9 @@
       return document.querySelector(el)
     }
   }
+  const iams = ["Software Developer", "Traveller", "Gamer"];
+  // $('#iams').prop('data-typed-items', iams)
+  document.getElementById("iam").setAttribute("data-typed-items", iams);
 
   /**
    * Easy event listener function
