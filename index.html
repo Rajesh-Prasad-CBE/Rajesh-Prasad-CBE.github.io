@@ -384,7 +384,8 @@
     
     window.onload = function() {  
       // Web Developer, Java Developer, Freelancer, Traveller    
-      
+      const iams = ["Software Developer", "Traveller", "Gamer"];
+      document.getElementById("iam").setAttribute("data-typed-items", iams);
       var age = Math.abs(new Date().getFullYear() - 1997);
       document.getElementById("age").innerHTML = age;      
     }
