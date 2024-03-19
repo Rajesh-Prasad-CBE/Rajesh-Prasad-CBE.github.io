@@ -327,12 +327,12 @@
                 <div class="sent-message">Your message has been sent. Thank you!</div>
               </div> -->
               <div class="text-center disabled" style="padding-top: 15px;">
-                <button type="submit" style="background: #0563bb;
+                <button type="button" style="background: #0563bb;
                 border: 0;
                 padding: 10px 35px;
                 color: #fff;
                 transition: 0.4s;
-                border-radius: 50px;" disabled>Send Message</button></div>
+                border-radius: 50px;" onclick="showSnackBar()">Send Message</button></div>
             </form>
 
           </div>
@@ -340,6 +340,7 @@
         </div>
 
       </div>
+      <div id="snackbar">Please try again later</div>
     </section><!-- End Contact Section -->
 
   </main><!-- End #main -->
