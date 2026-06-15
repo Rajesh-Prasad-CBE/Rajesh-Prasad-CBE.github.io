@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rajesh Prem Prasad | Staff Engineer Portfolio</title>
+    <title>Rajesh Prem Prasad | Software Engineer Portfolio</title>
     <style>
         /* Modern Reset & Advanced Variables */
         * {
@@ -14,9 +14,11 @@
         }
 
         :root {
-            --bg-color: #06040d;
+            --bg-color: #030108;
             --primary-glow: #00f2fe;
             --secondary-glow: #7f00ff;
+            --accent-glow: #00ff88;
+            --matrix-dim: rgba(0, 255, 136, 0.15);
             --glass-bg: rgba(255, 255, 255, 0.02);
             --glass-border: rgba(255, 255, 255, 0.08);
             --text-main: #ffffff;
@@ -35,46 +37,120 @@
             position: relative;
         }
 
-        /* Animated Ambient Plasma Background */
+        /* DYNAMIC CYBER ENVIRONMENT */
         .plasma-bg {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             overflow: hidden;
-            z-index: 1;
+            z-index: -1;
             pointer-events: none;
+            background: #030108;
         }
 
+        /* Cyberpunk Grid Overlay */
+        .plasma-bg::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 50px 50px;
+            mask-image: radial-gradient(circle at 50% 50%, black 60%, transparent 95%);
+            -webkit-mask-image: radial-gradient(circle at 50% 50%, black 60%, transparent 95%);
+            z-index: 2;
+        }
+
+        /* Glowing Cyber Scanline Sweep */
+        .plasma-bg::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0, 242, 254, 0.05) 50%, transparent 100%);
+            background-size: 100% 200px;
+            z-index: 3;
+            animation: scanlineSweep 8s linear infinite;
+        }
+
+        /* Cascading Data Streams */
+        .data-stream-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.4;
+        }
+
+        .stream {
+            position: absolute;
+            top: -200px;
+            width: 3px;
+            height: 180px;
+            background: linear-gradient(to bottom, transparent, var(--accent-glow));
+            animation: fall linear infinite;
+        }
+
+        .stream:nth-child(1) { left: 12%; animation-duration: 4.5s; animation-delay: 0.5s; }
+        .stream:nth-child(2) { left: 28%; animation-duration: 6s; animation-delay: 2s; height: 220px; }
+        .stream:nth-child(3) { left: 45%; animation-duration: 3.5s; animation-delay: 0s; }
+        .stream:nth-child(4) { left: 63%; animation-duration: 5.2s; animation-delay: 1.2s; height: 150px; }
+        .stream:nth-child(5) { left: 78%; animation-duration: 4s; animation-delay: 2.5s; }
+        .stream:nth-child(6) { left: 91%; animation-duration: 5.8s; animation-delay: 0.8s; height: 250px; }
+
+        /* Floating Plasma System Nodes */
         .orb {
             position: absolute;
             border-radius: 50%;
             mix-blend-mode: screen;
-            filter: blur(120px);
-            animation: floatOrb 25s infinite alternate ease-in-out;
+            filter: blur(130px);
+            opacity: 0.5;
+            transform: translate3d(0,0,0);
         }
 
         .orb-1 {
             width: 700px;
             height: 700px;
             background: linear-gradient(45deg, var(--primary-glow), #4facfe);
-            top: -20%;
-            left: -10%;
+            top: -10%;
+            left: -15%;
+            animation: floatOrb1 20s infinite alternate ease-in-out;
         }
 
         .orb-2 {
             width: 600px;
             height: 600px;
             background: linear-gradient(45deg, var(--secondary-glow), #e100ff);
-            bottom: -15%;
+            bottom: -10%;
             right: -10%;
-            animation-delay: -8s;
+            animation: floatOrb2 25s infinite alternate ease-in-out;
         }
 
-        @keyframes floatOrb {
-            0% { transform: translateY(0) scale(1) rotate(0deg); }
-            100% { transform: translateY(80px) scale(1.2) rotate(90deg); }
+        /* Animation Keyframes */
+        @keyframes scanlineSweep {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(calc(100vh + 200px)); opacity: 0; }
+        }
+
+        @keyframes floatOrb1 {
+            0% { transform: translate3d(0, 0, 0) scale(1); }
+            100% { transform: translate3d(50px, 40px, 0) scale(1.1); }
+        }
+
+        @keyframes floatOrb2 {
+            0% { transform: translate3d(0, 0, 0) scale(1); }
+            100% { transform: translate3d(-60px, -30px, 0) scale(1.05); }
         }
 
         /* Structural Framework Board */
@@ -83,12 +159,12 @@
             z-index: 10;
             width: 100%;
             max-width: 1100px;
-            background: rgba(10, 8, 22, 0.3);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
+            background: rgba(6, 4, 14, 0.45);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
             border: 1px solid var(--glass-border);
             border-radius: 28px;
-            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.75);
             display: flex;
             flex-direction: column;
             overflow: hidden;
@@ -113,6 +189,7 @@
             width: 32px;
             height: 32px;
             stroke: var(--primary-glow);
+            filter: drop-shadow(0 0 8px rgba(0, 242, 254, 0.6));
         }
 
         .brand-name {
@@ -137,6 +214,10 @@
         }
 
         .nav-links a:hover {
+            color: var(--primary-glow);
+            text-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
+        }
+        .tab-trigger:hover{
             color: var(--primary-glow);
             text-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
         }
@@ -257,6 +338,11 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            transition: border-color 0.4s;
+        }
+
+        .metric-card:hover {
+            border-color: rgba(0, 242, 254, 0.3);
         }
 
         .metric-card::before {
@@ -424,15 +510,15 @@
         .pulse-light {
             width: 8px;
             height: 8px;
-            background: #00ff88;
+            background: var(--accent-glow);
             border-radius: 50%;
-            box-shadow: 0 0 12px #00ff88;
+            box-shadow: 0 0 12px var(--accent-glow);
             animation: heartBeat 2s infinite alternate;
         }
 
         @keyframes heartBeat {
-            0% { opacity: 0.4; }
-            100% { opacity: 1; }
+            0% { opacity: 0.4; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1.1); box-shadow: 0 0 16px var(--accent-glow); }
         }
 
         /* Fluid Layout Breakpoints */
@@ -451,35 +537,48 @@
 </head>
 <body>
 
+    <!-- Animated Ambient Network Backdrop Layer -->
     <div class="plasma-bg">
+        <!-- Matrix Falling Data Cascades -->
+        <div class="data-stream-container">
+            <div class="stream"></div>
+            <div class="stream"></div>
+            <div class="stream"></div>
+            <div class="stream"></div>
+            <div class="stream"></div>
+            <div class="stream"></div>
+        </div>
+        <!-- Ambient Glowing Core Blobs -->
         <div class="orb orb-1"></div>
         <div class="orb orb-2"></div>
     </div>
 
     <div class="glass-shell">
+        <!-- Structural Navigation Bar -->
         <header>
             <div class="brand-identity">
+                <!-- SVG Tech Icon Graphic -->
                 <svg class="brand-logo-svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="16 18 22 12 16 6"></polyline>
                     <polyline points="8 6 2 12 8 18"></polyline>
                 </svg>
                 <div class="brand-name">Rajesh Prem Prasad</div>
             </div>
-            <!-- <nav class="nav-links">
-                <a href="#about">Profile</a>
-                <a href="https://rajesh-prasad-cbe.github.io/" target="_blank">Portfolio Node</a>
-                <a href="https://github.com/Rajesh-Prasad-CBE" target="_blank">GitHub</a>
-            </nav> -->
+            <nav class="nav-links">
+                <a href="https://www.linkedin.com/in/rajesh-prem-prasad-a51a77185" target="_blank">LinkedIn</a>
+            </nav>
         </header>
 
+        <!-- Main Stacked Container Layout -->
         <main class="stack-container">
             
+            <!-- Top Section: Profile Identity Context -->
             <section class="profile-summary" id="about">
                 <div class="title-badge">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2" ry="2"></rect><path d="M7 2v20"></path><path d="M17 2v20"></path><path d="M2 12h20"></path></svg>
                     Enterprise Core Engineering
                 </div>
-                <h1>Runtime Optimization <span>// Zero-Downtime Architecture</span></h1>
+                <h1>Engineering <span>High-Throughput Ecosystems</span></h1>
                 <p>
                     Java Backend Developer with over 6 years of experience designing and deploying scalable, high-availability microservices using Java 8+ and the Spring Boot ecosystem. Expert in asynchronous messaging, integration patterns utilizing Apache Camel, and managing complex workflows across millions of service transactions within mission-critical telecommunications and financial infrastructure.
                 </p>
@@ -488,12 +587,14 @@
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                         Secure Connection
                     </a>
-                    <!-- <a href="https://github.com/Rajesh-Prasad-CBE" target="_blank" class="action-button btn-outline">Review Source Repositories</a> -->
+                    <!-- <a href="" target="_blank" class="action-button btn-outline">Review Source Repositories</a> -->
                 </div>
             </section>
 
+            <!-- Bottom Section: Dynamic Engine Workspace & Statistics Data -->
             <section class="workspace-showcase">
                 
+                <!-- Graphic Telemetry Metric Cards -->
                 <div class="metrics-bar">
                     <div class="metric-card">
                         <h3>6+</h3>
@@ -504,11 +605,12 @@
                         <p>Modules Tracked</p>
                     </div>
                     <div class="metric-card">
-                        <h3>12+</h3>
-                        <p>Microservices</p>
+                        <h3>4+</h3>
+                        <p>Projects</p>
                     </div>
                 </div>
 
+                <!-- Experience Tab Widget Section -->
                 <div class="experience-widget">
                     <div class="widget-nav">
                         <button class="tab-trigger active" onclick="switchTab(event, 'cognizant')">Cognizant // Active</button>
@@ -517,6 +619,7 @@
                         <button class="tab-trigger" onclick="switchTab(event, 'edu')">Academic Core</button>
                     </div>
 
+                    <!-- Tab Pane 0: Cognizant Context (Active Position) -->
                     <div id="cognizant" class="tab-pane active">
                         <div class="pane-header">
                             <div>
@@ -537,9 +640,11 @@
                             <span class="tech-badge">RESTful APIs</span>
                             <span class="tech-badge">Enterprise Databases</span>
                             <span class="tech-badge">Cloud Infrastructure</span>
+                            <span class="tech-badge">Years</span>
                         </div>
                     </div>
 
+                    <!-- Tab Pane 1: Infosys Context -->
                     <div id="infosys" class="tab-pane">
                         <div class="pane-header">
                             <div>
@@ -561,9 +666,11 @@
                             <span class="tech-badge">Oracle SQL</span>
                             <span class="tech-badge">WebLogic</span>
                             <span class="tech-badge">GitLab</span>
+                            <span class="tech-badge">3 Years 4 Months</span>
                         </div>
                     </div>
 
+                    <!-- Tab Pane 2: TCS Context -->
                     <div id="tcs" class="tab-pane">
                         <div class="pane-header">
                             <div>
@@ -584,9 +691,11 @@
                             <span class="tech-badge">Selenium Automation</span>
                             <span class="tech-badge">PHP Integration</span>
                             <span class="tech-badge">NodeJS</span>
+                            <span class="tech-badge">2 Years 8 Months</span>
                         </div>
                     </div>
 
+                    <!-- Tab Pane 3: Academic Node -->
                     <div id="edu" class="tab-pane">
                         <div class="pane-header">
                             <div>
@@ -611,6 +720,7 @@
             </section>
         </main>
 
+        <!-- Live Node Telemetry Footer -->
         <footer>
             <div class="telemetry-node">
                 <span class="pulse-light"></span>
@@ -620,6 +730,7 @@
         </footer>
     </div>
 
+    <!-- Interface Navigation Logic Controller Script -->
     <script>
         function switchTab(event, tabId) {
             // Deactivate all tab elements
