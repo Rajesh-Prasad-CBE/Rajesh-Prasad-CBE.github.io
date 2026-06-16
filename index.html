@@ -184,15 +184,12 @@
             filter: drop-shadow(0 0 4px var(--packet-color));
         }
 
+        /* REUSABLE HARDWARE SERVER DESIGN SYSTEM */
         .server-node {
-            position: absolute;
-            width: 100px;
-            height: 110px;
             background: var(--server-bg);
             border: 1px solid var(--server-border);
             border-radius: 8px;
-            z-index: 3;
-            padding: 8px;
+            padding: 12px;
             box-sizing: border-box;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -209,7 +206,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             padding-bottom: 4px;
         }
@@ -236,20 +233,23 @@
         }
 
         .chassis-slot {
-            height: 15px;
+            height: 22px;
             background: rgba(15, 23, 42, 0.9);
             border-radius: 4px;
             margin-bottom: 5px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 5px;
+            padding: 0 8px;
             border: 1px solid rgba(255, 255, 255, 0.03);
+            position: relative;
+            overflow: hidden;
         }
 
         .slot-lines {
             display: flex;
             gap: 2px;
+            align-items: center;
         }
 
         .slot-line {
@@ -257,6 +257,20 @@
             height: 2px;
             background: #475569;
             border-radius: 1px;
+        }
+
+        .metric-payload {
+            font-size: 13px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: 0.5px;
+        }
+
+        .metric-label-inline {
+            font-size: 8.5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
         }
 
         .led-group {
@@ -281,6 +295,22 @@
         }
 
         /* Desktop Coordinates inside Absolute Matrix Framework Area */
+        .bg-network-container .server-node {
+            position: absolute;
+            z-index: 3;
+            width: 100px;
+            height: 110px;
+            padding: 8px;
+        }
+        .bg-network-container .server-node .chassis-slot {
+            height: 15px;
+            padding: 0 5px;
+        }
+        .bg-network-container .server-node .led {
+            width: 4px;
+            height: 4px;
+        }
+
         #srv-gateway  { top: calc(50% - 52px); left: calc(50% - 67px); }
         #srv-beta     { bottom: 25px; left: 25px; }
         #srv-delta    { bottom: 25px; right: 25px; }
@@ -476,49 +506,16 @@
             gap: 35px;
         }
 
-        /* Metric Graphics Bar */
+        /* SERVER-STYLED METRICS ROW */
         .metrics-bar {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
+            width: 100%;
         }
 
-        .metric-card {
-            background: rgba(10, 15, 30, 0.6);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            padding: 20px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            transition: border-color 0.4s;
-        }
-
-        .metric-card:hover {
-            border-color: rgba(0, 242, 254, 0.3);
-        }
-
-        .metric-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 3px;
-            background: linear-gradient(90deg, transparent, var(--primary-glow), transparent);
-        }
-
-        .metric-card h3 {
-            font-size: 32px;
-            font-weight: 800;
-            color: #fff;
-            margin-bottom: 4px;
-        }
-
-        .metric-card p {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--text-muted);
+        .metrics-bar .server-node {
+            cursor: default;
         }
 
         /* Dynamic Experience Board Widget */
@@ -749,15 +746,32 @@
                 height: 3px;
             }
 
+            /* Adjusting Server Metric Cards Grid on Mobile viewports */
             .metrics-bar { 
                 grid-template-columns: 1fr; 
                 gap: 12px; 
             }
-            .metric-card {
-                padding: 15px;
+            .metrics-bar .server-node {
+                height: auto;
+                padding: 12px;
             }
-            .metric-card h3 {
-                font-size: 26px;
+            .metrics-bar .server-title {
+                font-size: 10px;
+            }
+            .metrics-bar .chassis-slot {
+                height: 22px;
+                margin-bottom: 5px;
+                padding: 0 8px;
+            }
+            .metrics-bar .metric-payload {
+                font-size: 13px;
+            }
+            .metrics-bar .metric-label-inline {
+                font-size: 8.5px;
+            }
+            .metrics-bar .led {
+                width: 4px;
+                height: 4px;
             }
 
             .experience-widget {
@@ -822,7 +836,7 @@
 
             <div class="server-node" id="srv-gateway">
                 <div class="server-header">
-                    <span class="server-title">&Chi;</span> 
+                    <span class="server-title"></span> 
                     <div class="status-indicator"></div>
                 </div>
                 <div class="chassis-slot">
@@ -843,7 +857,7 @@
 
             <div class="server-node" id="srv-alpha">
                 <div class="server-header">
-                    <span class="server-title">&Omega;</span> 
+                    <span class="server-title"></span> 
                     <div class="status-indicator"></div>
                 </div>
                 <div class="chassis-slot">
@@ -862,7 +876,7 @@
 
             <div class="server-node" id="srv-beta">
                 <div class="server-header">
-                    <span class="server-title">&Psi;</span> 
+                    <span class="server-title"></span> 
                     <div class="status-indicator"></div>
                 </div>
                 <div class="chassis-slot">
@@ -882,7 +896,7 @@
 
             <div class="server-node" id="srv-gamma">
                 <div class="server-header">
-                    <span class="server-title">&Sigma;</span> 
+                    <span class="server-title"></span> 
                     <div class="status-indicator"></div>
                 </div>
                 <div class="chassis-slot">
@@ -901,7 +915,7 @@
 
             <div class="server-node" id="srv-delta">
                 <div class="server-header">
-                    <span class="server-title">&Phi;</span> 
+                    <span class="server-title"></span> 
                     <div class="status-indicator"></div>
                 </div>
                 <div class="chassis-slot">
@@ -951,67 +965,69 @@
                 </div>
             </section>
 
-            <div class="mobile-server-linear-row">
-                <div class="server-node">
-                    <div class="server-header">
-                        <span class="server-title">&Chi;</span> 
-                        <div class="status-indicator"></div>
-                    </div>
-                    <div class="chassis-slot">
-                        <div class="slot-lines"><div class="slot-line"></div></div>
-                        <div class="led-group"><div class="led green" style="color: #10b981;"></div></div>
-                    </div>
-                    <div class="chassis-slot">
-                        <div class="slot-lines"><div class="slot-line"></div></div>
-                        <div class="led-group"><div class="led blue" style="color: #38bdf8;"></div></div>
-                    </div>
-                </div>
-
-                <div class="server-node">
-                    <div class="server-header">
-                        <span class="server-title">&Omega;</span> 
-                        <div class="status-indicator"></div>
-                    </div>
-                    <div class="chassis-slot">
-                        <div class="slot-lines"><div class="slot-line"></div></div>
-                        <div class="led-group"><div class="led green" style="color: #10b981;"></div></div>
-                    </div>
-                    <div class="chassis-slot">
-                        <div class="slot-lines"><div class="slot-line"></div></div>
-                        <div class="led-group"><div class="led amber" style="color: #f59e0b;"></div></div>
-                    </div>
-                </div>
-
-                <div class="server-node">
-                    <div class="server-header">
-                        <span class="server-title">&Sigma;</span> 
-                        <div class="status-indicator"></div>
-                    </div>
-                    <div class="chassis-slot">
-                        <div class="slot-lines"><div class="slot-line"></div></div>
-                        <div class="led-group"><div class="led blue" style="color: #38bdf8;"></div></div>
-                    </div>
-                    <div class="chassis-slot">
-                        <div class="slot-lines"><div class="slot-line"></div></div>
-                        <div class="led-group"><div class="led green" style="color: #10b981;"></div></div>
-                    </div>
-                </div>
-            </div>
+            
 
             <section class="workspace-showcase">
                 
                 <div class="metrics-bar">
-                    <div class="metric-card">
-                        <h3>6+</h3>
-                        <p>Years Runtime</p>
+                    <div class="server-node">
+                        <div class="server-header">
+                            <span class="server-title">METRIC_CORE_01</span>
+                            <div class="status-indicator"></div>
+                        </div>
+                        <div class="chassis-slot">
+                            <div class="slot-lines"><span class="metric-payload">6+</span></div>
+                            <div class="led-group">
+                                <div class="led green" style="color: #10b981;"></div>
+                                <div class="led blue" style="color: #38bdf8;"></div>
+                            </div>
+                        </div>
+                        <div class="chassis-slot">
+                            <span class="metric-label-inline">Years Runtime</span>
+                            <div class="led-group">
+                                <div class="led green" style="color: #10b981;"></div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="metric-card">
-                        <h3>200+</h3>
-                        <p>Modules Tracked</p>
+
+                    <div class="server-node">
+                        <div class="server-header">
+                            <span class="server-title">METRIC_CORE_02</span>
+                            <div class="status-indicator"></div>
+                        </div>
+                        <div class="chassis-slot">
+                            <div class="slot-lines"><span class="metric-payload">200+</span></div>
+                            <div class="led-group">
+                                <div class="led green" style="color: #10b981;"></div>
+                                <div class="led amber" style="color: #f59e0b;"></div>
+                            </div>
+                        </div>
+                        <div class="chassis-slot">
+                            <span class="metric-label-inline">Modules Tracked</span>
+                            <div class="led-group">
+                                <div class="led blue" style="color: #38bdf8;"></div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="metric-card">
-                        <h3>4+</h3>
-                        <p>Projects</p>
+
+                    <div class="server-node">
+                        <div class="server-header">
+                            <span class="server-title">METRIC_CORE_03</span>
+                            <div class="status-indicator"></div>
+                        </div>
+                        <div class="chassis-slot">
+                            <div class="slot-lines"><span class="metric-payload">4+</span></div>
+                            <div class="led-group">
+                                <div class="led blue" style="color: #38bdf8;"></div>
+                            </div>
+                        </div>
+                        <div class="chassis-slot">
+                            <span class="metric-label-inline">Enterprise Projects</span>
+                            <div class="led-group">
+                                <div class="led green" style="color: #10b981;"></div>
+                                <div class="led green" style="color: #10b981;"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -1121,6 +1137,52 @@
                 </div>
 
             </section>
+            <div class="mobile-server-linear-row">
+                <div class="server-node">
+                    <div class="server-header">
+                        <span class="server-title"></span> 
+                        <div class="status-indicator"></div>
+                    </div>
+                    <div class="chassis-slot">
+                        <div class="slot-lines"><div class="slot-line"></div></div>
+                        <div class="led-group"><div class="led green" style="color: #10b981;"></div></div>
+                    </div>
+                    <div class="chassis-slot">
+                        <div class="slot-lines"><div class="slot-line"></div></div>
+                        <div class="led-group"><div class="led blue" style="color: #38bdf8;"></div></div>
+                    </div>
+                </div>
+
+                <div class="server-node">
+                    <div class="server-header">
+                        <span class="server-title"></span> 
+                        <div class="status-indicator"></div>
+                    </div>
+                    <div class="chassis-slot">
+                        <div class="slot-lines"><div class="slot-line"></div></div>
+                        <div class="led-group"><div class="led green" style="color: #10b981;"></div></div>
+                    </div>
+                    <div class="chassis-slot">
+                        <div class="slot-lines"><div class="slot-line"></div></div>
+                        <div class="led-group"><div class="led amber" style="color: #f59e0b;"></div></div>
+                    </div>
+                </div>
+
+                <div class="server-node">
+                    <div class="server-header">
+                        <span class="server-title"></span> 
+                        <div class="status-indicator"></div>
+                    </div>
+                    <div class="chassis-slot">
+                        <div class="slot-lines"><div class="slot-line"></div></div>
+                        <div class="led-group"><div class="led blue" style="color: #38bdf8;"></div></div>
+                    </div>
+                    <div class="chassis-slot">
+                        <div class="slot-lines"><div class="slot-line"></div></div>
+                        <div class="led-group"><div class="led green" style="color: #10b981;"></div></div>
+                    </div>
+                </div>
+            </div>
         </main>
 
         <footer>
