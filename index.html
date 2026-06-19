@@ -59,7 +59,7 @@
         }
 
         /* Cyberpunk Grid Overlay */
-        .plasma-bg::before {
+        /* .plasma-bg::before {
             content: '';
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -70,10 +70,10 @@
             mask-image: radial-gradient(circle at 50% 50%, black 60%, transparent 95%);
             -webkit-mask-image: radial-gradient(circle at 50% 50%, black 60%, transparent 95%);
             z-index: 2;
-        }
+        } */
 
         /* Glowing Cyber Scanline Sweep */
-        .plasma-bg::after {
+        /* .plasma-bg::after {
             content: '';
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -81,7 +81,7 @@
             background-size: 100% 200px;
             z-index: 3;
             animation: scanlineSweep 8s linear infinite;
-        }
+        } */
 
         /* Floating Plasma System Nodes */
         .orb {
@@ -99,7 +99,7 @@
             background: linear-gradient(45deg, var(--primary-glow), #4facfe);
             top: -10%;
             left: -15%;
-            animation: floatOrb1 20s infinite alternate ease-in-out;
+            animation: floatOrb1 10s infinite alternate ease-in-out;
         }
 
         .orb-2 {
@@ -108,7 +108,7 @@
             background: linear-gradient(45deg, var(--secondary-glow), #e100ff);
             bottom: -10%;
             right: -10%;
-            animation: floatOrb2 25s infinite alternate ease-in-out;
+            animation: floatOrb2 10s infinite alternate ease-in-out;
         }
 
         /* OVERLAY CONTAINER INSIDE GLASS CORE CHASSIS */
@@ -332,12 +332,20 @@
 
         @keyframes floatOrb1 {
             0% { transform: translate3d(0, 0, 0) scale(1); }
-            100% { transform: translate3d(50px, 40px, 0) scale(1.1); }
+            100% { transform: translate3d(50%, 50%, 0) scale(1.5); }
         }
+        /* @keyframes corePulse {
+        0%, 90% {
+            background: var(--primary-glow);;
+        }
+        91%, 99% {
+            background: var(--secondary-glow);
+        }
+        } */
 
         @keyframes floatOrb2 {
             0% { transform: translate3d(0, 0, 0) scale(1); }
-            100% { transform: translate3d(-60px, -30px, 0) scale(1.05); }
+            100% { transform: translate3d(-50%, -50%, 0) scale(1.5); }
         }
 
         /* Structural Framework Board */
@@ -474,7 +482,7 @@
             align-items: center;
             gap: 10px;
             padding: 14px 30px;
-            border-radius: 50px;
+            border-radius: 5px;
             text-decoration: none;
             font-weight: 600;
             font-size: 13px;
@@ -515,7 +523,7 @@
         }
 
         .metrics-bar .server-node {
-            cursor: default;
+            cursor: none;
         }
 
         /* Dynamic Experience Board Widget */
@@ -813,7 +821,7 @@
 
     <div class="glass-shell">
         
-        <div class="bg-network-container">
+        <!-- <div class="bg-network-container">
             <div class="data-stream-container">
                 <div class="stream"></div>
                 <div class="stream"></div>
@@ -931,7 +939,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <header>
             <div class="brand-identity">
@@ -1033,10 +1041,27 @@
 
                 <div class="experience-widget">
                     <div class="widget-nav">
-                        <button class="tab-trigger active" onclick="switchTab(event, 'cognizant')">Cognizant // Active</button>
-                        <button class="tab-trigger" onclick="switchTab(event, 'infosys')">Infosys</button>
-                        <button class="tab-trigger" onclick="switchTab(event, 'tcs')">TCS</button>
-                        <button class="tab-trigger" onclick="switchTab(event, 'edu')">Academic Core</button>
+                        <button class="tab-trigger active" onclick="switchTab(event, 'cognizant')" style="display: flex;">Cognizant // Active
+                            <div class="led-group" style="padding: 5px;">
+                                <div class="led green" style="color: #10b981;"></div>
+                                <div class="led green" style="color: #10b981;"></div>
+                            </div>
+                        </button>
+                        <button class="tab-trigger" onclick="switchTab(event, 'infosys')" style="display: flex;">Infosys
+                            <div class="led-group" style="padding: 5px;">
+                                <div class="led blue" style="color: grey; "></div>
+                            </div>
+                        </button>
+                        <button class="tab-trigger" onclick="switchTab(event, 'tcs')" style="display: flex;">TCS
+                            <div class="led-group" style="padding: 5px;">
+                                <div class="led amber" style="color: grey;"></div>
+                            </div>
+                        </button>
+                        <button class="tab-trigger" onclick="switchTab(event, 'edu')" style="display: flex;">Academic Core
+                            <div class="led-group" style="padding: 5px;">
+                                <div class="led amber" style="color: #f59e0b;"></div>
+                            </div>
+                        </button>
                     </div>
 
                     <div id="cognizant" class="tab-pane active">
